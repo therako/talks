@@ -1,0 +1,189 @@
+    
+    \documentclass[12pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphics}
+\usepackage{listings}
+
+\usepackage{array,booktabs}
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+% custom commands
+\newcommand{\nologo}{\setbeamertemplate{logo}{}} % set logo to empty
+
+\title{AIS payload}
+\author{Arun}
+\date{\today}
+
+
+\begin{document}
+    \frame{\titlepage}
+    \begin{frame}
+        \begin{center}
+            AIS (Automatic Identification System)
+        \end{center}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Trust}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item How trust worthy are AIS messages?
+                \pause
+                \item In short, Not at all (not my words)
+                \pause
+                \item There are a few reasons for this
+                \pause
+                \item CRC corrections using the current polynomial bit flips are not that accurate
+                \pause
+                \item We get about a few thousand of wrong mmsi's every day
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{CRC Corrections}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item 0 - No alterations to the message or CRC
+                \pause
+                \item 1 - One bit fliped
+                \pause
+                \item 2 - Two consecutive bits flipped
+                \pause
+                \item These are done in the satellites, why?
+                \pause
+                \item Cause we don't enough bandwidth to download all the messages
+                \pause
+                \item This way we reduce the size
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Message Types}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item Message 1, 2, 3: Position Report Class A
+                \pause
+                \item Message 5: Static and Voyage Related Data (messages whose data is entered by hand)
+                \pause
+                \item Message 8: Binary Broadcast Message (unspecified)
+                \pause
+                \item Message 9: Standard Search and Rescue Aircraft Position Report
+                \pause
+                \item Message 18, 19: Static info about the ship
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Other Corrections}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item message-type checks in satellites
+                \pause
+                \item Dropping unknown mmsi id's in our pipelines
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Deconflicting}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item Ships in range don't speak to each other at the same time
+                \pause
+                \item But a satellite could pick up multiple signals in the range
+                \pause
+                \item So we do multiplex based on strong signals and pick them up sequentially
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{QubeAIS}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item What is QubeAIS
+                \pause
+                \item Our current satellites for AIS are mostly qubeAIS
+                \pause
+                \item Has a few limitations
+                \pause
+                \item Low on CPU power
+                \pause
+                \item So its processing and crc corrections are limited
+                \pause
+                \item Has a life long buffer for Sequence-number
+                \pause
+                \item But on errors and reboots the Sequence-number will be reset
+                \pause
+                \item Filename + Sequence-number will be unique for a message
+                \pause
+                \item Message size is limited, type 5 and 8 are handled differently
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{SAAM}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item Spire AIS ADSB Machines
+                \pause
+                \item Better hardware, more CPU power
+                \pause
+                \item Supports messages with variable size
+                \pause
+                \item Can do more complex CRC corrections
+                \pause
+                \item Filename + Sequence-number will be unique for a message
+                \pause
+                \item Will be enabling late november
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Others}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item AIS
+                \pause
+                \item Old 4 satellites and no one cares
+                \pause
+                \item T-AIS
+                \pause
+                \item Jakota
+                \pause
+                \item Lots errors and invalid messages
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{File Types}
+        %\begin{columns}
+            %\column{0.5\textwidth}
+            \begin{itemize}
+                \item Static file
+                \pause
+                \item Priority file
+                \pause
+                \item Surplus file
+            \end{itemize}
+        %\end{columns}
+    \end{frame}
+
+\end{document}
