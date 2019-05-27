@@ -7,3 +7,5 @@
 *.vrb
 *.DS_Store
 .history
+*.fdb_latexmk
+*.fls
