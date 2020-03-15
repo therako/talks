@@ -1,0 +1,75 @@
+\documentclass[12pt]{beamer}
+
+    \usepackage[utf8]{inputenc}
+    \usepackage{graphics}
+    \usepackage{listings}
+    
+    \usepackage{array,booktabs}
+    
+    \usetheme{Madrid}
+    \usecolortheme{beaver}
+    
+    % custom commands
+    \newcommand{\nologo}{\setbeamertemplate{logo}{}} % set logo to empty
+    
+    \title{RAFT}
+    \author{Arun}
+    \date{\today}
+    
+    \begin{document}
+        \begin{frame}
+            \begin{center}
+                \frametitle{What Is Consensus}
+                \begin{itemize}
+                    \item Agreement on shared state                
+                \end{itemize}
+            \end{center}
+        \end{frame}
+    
+        \begin{frame}
+            \begin{center}
+                \frametitle{Paxos Protocol (1989)}
+                \begin{itemize}
+                    \item Most confusing thing written to solve the Consensus
+                    \item It was rejected till 1988
+                    \item No one understood it till 1998 and got published as "The Part-Time Parliament"
+                \end{itemize}
+            \end{center}
+        \end{frame}
+    
+        \begin{frame}
+            \frametitle{Paxos quotes}
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{images/paxos-quotes.png}
+                \note{NSDI - Networked Systems Design and Implementation}
+            \end{center}
+        \end{frame}
+
+        \begin{frame}
+            \begin{center}
+                \frametitle{ZAB (2011)}
+                \begin{itemize}
+                    \item By Zookeeper (no it's not Paxos)
+                    \item Does leader proposers, crash recovery, atomic broadcasting
+                    \item Paper: https://ieeexplore.ieee.org/document/5958223
+                \end{itemize}
+            \end{center}
+        \end{frame}
+
+        \begin{frame}
+            \begin{center}
+                \frametitle{Raft - Replicated and Fault Tolerant (2013)}
+                \begin{itemize}
+                    \item Leader election
+                    \item Log replication
+                    \item Safety
+                    \begin{itemize}
+                        \item Only a server with an up-to-date log can become leader
+                    \end{itemize}
+                    \item http://thesecretlivesofdata.com/raft/
+                \end{itemize}
+            \end{center}
+        \end{frame}
+    
+    \end{document}
+    
