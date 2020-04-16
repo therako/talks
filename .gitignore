@@ -9,3 +9,8 @@
 .history
 *.fdb_latexmk
 *.fls
+
+__latexindent_temp.tex
+slides.synctex.gz
+
+.vscode
