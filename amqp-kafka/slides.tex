@@ -21,7 +21,8 @@
             \begin{center}
                 \frametitle{Message Queuing/Message Bus}
                 \begin{itemize}
-                    \item Message queuing allows applications to communicate by sending messages to each other. The message queue provides temporary message storage when the destination program is busy or not connected.
+                    \pause
+                    \item Message Queuing allows applications to communicate by sending messages to each other. The message queue provides temporary message storage when the destination program is busy or not connected.
                 \end{itemize}
             \end{center}
         \end{frame}
@@ -32,8 +33,11 @@
                 \includegraphics[width=0.5\textwidth]{images/simple-amqp}
                 \begin{itemize}
                     \item AMQP 0.9.1 (latest version and what's supported by rabbitMQ)
+                    \pause
                     \item publishers writes to the exchange, there are few routing options based on which the message is put in a queue
+                    \pause
                     \item when a message cannot be routed, messages may be returned to publishers, dropped or put in dead letter queue
+                    \pause
                     \item messages are stored until a consumer receives a message and acknowledge
                 \end{itemize}
             \end{center}
@@ -64,7 +68,9 @@
                 \frametitle{RabbitMQ scaling}
                 \begin{itemize}
                     \item Consumer scaling is easy you can add more consumers when you publish quicker then you can consume
+                    \pause
                     \item Scaling broker is veritcal in RabbitMQ.
+                    \pause
                     \item Horizontal scaling of borker is possible with clustering but it's annowying setup
                 \end{itemize}
             \end{center}
@@ -76,10 +82,14 @@
                 \includegraphics[width=0.5\textwidth]{images/kafka}
                 \begin{itemize}
                     \item by LinkedIn, built for large scale stream processing in a fault-tolerant fashion with at-least once delivery
+                    \pause
                     \item Kafka is based on the commit log, and messages comes from many producers in TCP
+                    \pause
                     \item Data in a topic is partitioned and within a partition, messages are strictly ordered by their offsets
+                    \pause
                     \item messages are stored until the set TTL is reached and can be replayed if needed with resetting the offsets
-                    \item Kafka i bounded by IO and disk IOPS, and you can add more nodes/partition topics further to increase overcome those limits.
+                    \pause
+                    \item Kafka is bounded by IO and disk IOPS, and you can add more nodes/partition topics further to increase overcome those limits.
                 \end{itemize}
             \end{center}
         \end{frame}
@@ -117,6 +127,16 @@
                 \end{itemize}
             \end{center}
         \end{frame}
+
+        \begin{frame}
+            \begin{center}
+                \frametitle{Kinesis}
+                \begin{itemize}
+                    \item Kinesis was modeled after Kafka 0.8.0
+                    \item Not a streaming platform like kafka, it's just a message bus.
+                    \item Managed by AWS, uses shards instead of partition but similar concept
+                \end{itemize}
+            \end{center}
+        \end{frame}
      
     \end{document}
-    
